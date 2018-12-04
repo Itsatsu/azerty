@@ -14,16 +14,19 @@ class Person{
 	public function speak($speak){
 		return ($this->parole = $speak).',je suis '.$this->prenom.'mon loup se nomme '.$this->monloup->getNom();
 	}
-	public function __construct($nom, $prenom){
+	public function __construct(string $nom, $prenom){
 		$this->nom = $nom;
 		$this->prenom = $prenom;
 	}
 	public function buy($monloup){
 		$this->monloup = $monloup;
+		$this->monloup->proprio($this->nom);
 	}
 }
 class loup{
 	private $NOM1;
+	private $nomproprio;
+	private $parole2;
 
 	public function setNom($NOM2){
 		$this->NOM1 = $NOM2;
@@ -31,15 +34,20 @@ class loup{
 	public function getNom(){
 		return $this->NOM1;
 	}
-	public function __construct($NOM1){
+	public function __construct(string $NOM1){
 	$this->NOM1 = $NOM1; 
 
 }
+	public function proprio($nomproprio){
+		$this->nomproprio = $nomproprio;
+	}
+	public function parler(){
+		return 'mon proprio est '.$this->nomproprio;
+	}
 }
 $gerald = new loup('gerald');
 //$gerald->setNOM('gerald');
 //var_dump($gerald->getNom());
-var_dump($gerald);
 
 $eric = new Person("Gigondan", "Eric");
 $eric->buy($gerald);
@@ -47,4 +55,7 @@ $eric->buy($gerald);
 var_dump($eric);
 //var_dump($eric->getPrenom());
 var_dump($eric->speak('bonjour je suis jeune'));
+
+var_dump($gerald);
+var_dump($gerald->parler());
  ?>
